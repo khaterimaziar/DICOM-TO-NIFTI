@@ -1,0 +1,14 @@
+# Define the input and output paths
+in_path = '/home/maziar/Segmentation/Pre/after/'
+out_path = '/home/maziar/Segmentation/Pre/nii/'
+
+# Get a list of all directories inside the 'after' folder
+directories = glob(in_path + '/*')
+
+# Loop through each directory
+for directory in directories:
+    # Get the name of the directory (patient's name)
+    patients_name = os.path.basename(os.path.normpath(directory))
+    
+    # Convert the DICOM series to NIfTI format and save it to the output path
+    dicom2nifti.dicom_series_to_nifti(directory, os.path.join(out_path, patients_name))
